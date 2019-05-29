@@ -1,0 +1,35 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="IvStyle">
+        <item name="android:layout_width">@dimen/ivWidth</item>
+        <item name="android:layout_height">@dimen/ivSize</item>
+        <item name="android:src">@drawable/login_logo</item>
+        <item name="android:layout_marginBottom">@dimen/marginBottom</item>
+        <item name="android:contentDescription">@string/ivDescription</item>
+    </style>
+
+    <style name="EtStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/etTextSize</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="BtnStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/etTextSize</item>
+        <item name="android:text">@string/login</item>
+        <item name="android:layout_marginTop">@dimen/marginTop</item>
+    </style>
+
+</resources>

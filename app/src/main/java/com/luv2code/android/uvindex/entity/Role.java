@@ -1,4 +1,4 @@
-package com.luv2code.android.uvindex.model;
+package com.luv2code.android.uvindex.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

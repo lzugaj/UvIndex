@@ -2,6 +2,6 @@
     <string name="app_name">UVIndex</string>
     <string name="username_hint">Enter username here</string>
     <string name="password_hint">Enter password here</string>
-    <string name="ivDescription">Login logo</string>
+    <string name="iv_description">Login user logo</string>
     <string name="login">Login</string>
 </resources>

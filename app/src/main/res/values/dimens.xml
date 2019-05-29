@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="padding">16dp</dimen>
-    <dimen name="etTextSize">18sp</dimen>
-    <dimen name="ivSize">250dp</dimen>
-    <dimen name="marginBottom">50dp</dimen>
-    <dimen name="marginTop">20dp</dimen>
-    <dimen name="ivWidth">350dp</dimen>
+    <dimen name="ivSize">150dp</dimen>
+    <dimen name="etTextSize">20sp</dimen>
+    <dimen name="marginBottom">30dp</dimen>
+    <dimen name="marginTop">30dp</dimen>
 </resources>

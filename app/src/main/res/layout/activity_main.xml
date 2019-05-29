@@ -8,34 +8,19 @@
     android:gravity="center"
     android:padding="@dimen/padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+    <ImageView
+        android:id="@+id/ivLogin"
+        style="@style/IvStyle" />
 
-        <ImageView
-            android:id="@+id/ivLogin"
-            style="@style/IvStyle" />
-    </LinearLayout>
+    <EditText android:id="@+id/etUsername"
+        style="@style/EtStyle"
+        android:hint="@string/username_hint"/>
 
+    <EditText android:id="@+id/etPassword"
+        style="@style/EtStyle"
+        android:hint="@string/password_hint"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/marginTop">
-
-        <EditText android:id="@+id/etUsername"
-            style="@style/EtStyle"
-            android:hint="@string/username_hint"/>
-
-        <EditText android:id="@+id/etPassword"
-            style="@style/EtStyle"
-            android:hint="@string/password_hint"/>
-
-        <Button android:id="@+id/btnLogin"
-            style="@style/BtnStyle"/>
-    </LinearLayout>
+    <Button android:id="@+id/btnLogin"
+        style="@style/BtnStyle"/>
 
 </LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@android:color/holo_green_dark"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="@dimen/cornerRadius">
+
+    <LinearLayout style="@style/LLCardViewStyle">
+
+        <LinearLayout style="@style/LLContentStyle">
+            <TextView android:id="@+id/tvLocation"
+                style="@style/TvLocationStyle"
+                tools:text="Zagreb"/>
+
+            <LinearLayout style="@style/LLCardTextViewStyle">
+                <TextView android:id="@+id/tvUvIndexText"
+                    style="@style/TvUvIndexText.TvStyle" />
+
+                <TextView android:id="@+id/tvUvIndexValue"
+                    style="@style/TvUvIndexValue.TvStyle"
+                    tools:text="5"/>
+            </LinearLayout>
+
+            <LinearLayout style="@style/LLCardTextViewStyle">
+                <TextView android:id="@+id/tvDateText"
+                    style="@style/TvDateText.TvStyle" />
+
+                <TextView android:id="@+id/tvDateValue"
+                    style="@style/TvDateValue.TvStyle"
+                    tools:text="2019-02-05"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivInfo"
+            style="@style/IvInfoStyle"/>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

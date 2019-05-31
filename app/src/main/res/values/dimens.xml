@@ -5,4 +5,8 @@
     <dimen name="etTextSize">20sp</dimen>
     <dimen name="marginBottom">30dp</dimen>
     <dimen name="marginTop">30dp</dimen>
+    <dimen name="marginBottomUser">15dp</dimen>
+    <dimen name="cornerRadius">10dp</dimen>
+    <dimen name="ivHeight">50dp</dimen>
+    <dimen name="paddingCardView">8dp</dimen>
 </resources>

@@ -4,4 +4,14 @@
     <string name="password_hint">Enter password here</string>
     <string name="iv_description">Login user logo</string>
     <string name="login">Login</string>
+    <string name="date_from">Date from</string>
+    <string name="date_to">Date to</string>
+    <string name="button_search">Search</string>
+    <string name="uvIndexText">Uv Index:</string>
+    <string name="dateText">Datum mjerenja:</string>
+    <string name="iv_info_description">Info logo</string>
+    <string name="exit_from_app">Exit the application</string>
+    <string name="exit_confirm">Are you sure you want exit the application</string>
+    <string name="logout">Logout</string>
+    <string name="exit">Exit</string>
 </resources>

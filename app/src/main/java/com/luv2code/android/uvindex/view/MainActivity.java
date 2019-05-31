@@ -1,7 +1,9 @@
 package com.luv2code.android.uvindex.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,6 +19,7 @@ import com.luv2code.android.uvindex.utils.DataGenerator;
 import com.luv2code.android.uvindex.viewmodel.LoginViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +27,8 @@ import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
 import static com.luv2code.android.uvindex.utils.AppConstants.ADMIN;
+import static com.luv2code.android.uvindex.utils.AppConstants.KEY_USER;
+import static com.luv2code.android.uvindex.utils.AppConstants.RETURN_LOGIN_KEY;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private UvIndexDatabase database;
 
     private LoginViewModel loginViewModel;
+
+    private final int reqCodeUserIntent = 57;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +96,32 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Hello Admin", Toast.LENGTH_SHORT).show();
             } else {
                 // User intent
-                Toast.makeText(this, "Hello User", Toast.LENGTH_SHORT).show();
+                goToUserActivity(user.getUsername());
             }
         } else {
             Toast.makeText(this, "Wrong username or password. Please try again.", Toast.LENGTH_LONG).show();
+        }
+
+        resetEditFields();
+    }
+
+    private void resetEditFields() {
+        etUsername.setText(null);
+        etPassword.setText(null);
+    }
+
+    private void goToUserActivity(String username) {
+        Intent userIntent = new Intent(MainActivity.this, UserActivity.class);
+        userIntent.putExtra(KEY_USER, username);
+        startActivityForResult(userIntent, reqCodeUserIntent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == reqCodeUserIntent && resultCode == RESULT_OK) {
+            String result = Objects.requireNonNull(data).getStringExtra(RETURN_LOGIN_KEY);
+            Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
         }
     }
 }

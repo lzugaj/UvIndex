@@ -1,4 +1,4 @@
-package com.luv2code.android.uvindex.model;
+package com.luv2code.android.uvindex.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -10,10 +10,10 @@ import android.arch.persistence.room.PrimaryKey;
  */
 
 @Entity(tableName = "user",
-        foreignKeys = @ForeignKey(entity= Role.class, parentColumns = "role_id", childColumns = "id_role"))
+        foreignKeys = @ForeignKey(entity = Role.class, parentColumns = "role_id", childColumns = "id_role"))
 public class User {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "user_id")
     private Long id;
 
@@ -23,8 +23,12 @@ public class User {
     @ColumnInfo(name = "password")
     private String password;
 
-    @ColumnInfo(name = "id_role")
-    public Long roleId;
+    @ColumnInfo(name = "id_role", index = true)
+    private Long roleId;
+
+    public User() {
+        // Default constructor
+    }
 
     public User(String username, String password, Long roleId) {
         this.username = username;

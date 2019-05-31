@@ -1,4 +1,4 @@
-package com.luv2code.android.uvindex.model;
+package com.luv2code.android.uvindex.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -21,7 +21,8 @@ public class Role {
     @ColumnInfo(name = "code_name")
     private String codeName;
 
-    public Role(String descriptionName, String codeName) {
+    public Role(Long id, String descriptionName, String codeName) {
+        this.id = id;
         this.descriptionName = descriptionName;
         this.codeName = codeName;
     }

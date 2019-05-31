@@ -33,6 +33,7 @@
         <item name="android:layout_marginTop">@dimen/marginTop</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:textColor">@color/btnLoginTextColor</item>
+        <item name="android:enabled">false</item>
     </style>
 
 </resources>

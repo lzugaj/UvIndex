@@ -2,15 +2,13 @@ package com.luv2code.android.uvindex.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
  * Created by lzugaj on 5/27/2019
  */
 
-@Entity(tableName = "user",
-        foreignKeys = @ForeignKey(entity= Role.class, parentColumns = "role_id", childColumns = "id_role"))
+@Entity(tableName = "user")
 public class User {
 
     @PrimaryKey(autoGenerate = true)

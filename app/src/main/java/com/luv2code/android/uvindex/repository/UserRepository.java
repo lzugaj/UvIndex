@@ -1,8 +1,10 @@
 package com.luv2code.android.uvindex.repository;
 
+import android.app.Application;
 import android.util.Log;
 
 import com.luv2code.android.uvindex.dao.UserDao;
+import com.luv2code.android.uvindex.database.UvIndexDatabase;
 import com.luv2code.android.uvindex.entity.User;
 
 import java.util.List;
@@ -13,22 +15,13 @@ import java.util.List;
 
 public class UserRepository implements UserDao {
 
-    private static final String LOGGER = "UserRepository";
-
-    private static UserRepository instance;
+    private static final String LOGGER = UserRepository.class.getSimpleName();
 
     private UserDao userDao;
 
-    public UserRepository(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
-    public static UserRepository getInstance(UserDao userDao) {
-        if (instance == null) {
-            instance = new UserRepository(userDao);
-        }
-
-        return instance;
+    public UserRepository(Application application) {
+        UvIndexDatabase uvIndexDatabase = UvIndexDatabase.getDatabase(application);
+        this.userDao = uvIndexDatabase.userDao();
     }
 
     @Override

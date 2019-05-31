@@ -36,9 +36,9 @@ public class DataGenerator {
         User user3 = new User("admin", "admin", 0);
 
         database.clearAllTables();
+
         database.userDao().insert(user1);
         database.userDao().insert(user2);
         database.userDao().insert(user3);
     }
-
 }

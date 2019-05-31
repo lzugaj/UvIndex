@@ -2,13 +2,15 @@ package com.luv2code.android.uvindex.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
  * Created by lzugaj on 5/27/2019
  */
 
-@Entity(tableName = "user")
+@Entity(tableName = "user",
+        foreignKeys = @ForeignKey(entity = Role.class, parentColumns = "role_id", childColumns = "id_role"))
 public class User {
 
     @PrimaryKey(autoGenerate = true)
@@ -21,10 +23,14 @@ public class User {
     @ColumnInfo(name = "password")
     private String password;
 
-    @ColumnInfo(name = "id_role")
-    private int roleId;
+    @ColumnInfo(name = "id_role", index = true)
+    private Long roleId;
 
-    public User(String username, String password, int roleId) {
+    public User() {
+        // Default constructor
+    }
+
+    public User(String username, String password, Long roleId) {
         this.username = username;
         this.password = password;
         this.roleId = roleId;
@@ -54,11 +60,11 @@ public class User {
         this.password = password;
     }
 
-    public int getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 

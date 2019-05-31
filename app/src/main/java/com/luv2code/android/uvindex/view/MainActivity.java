@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.luv2code.android.uvindex.R;
 import com.luv2code.android.uvindex.database.UvIndexDatabase;
+import com.luv2code.android.uvindex.entity.Role;
 import com.luv2code.android.uvindex.entity.User;
 import com.luv2code.android.uvindex.utils.DataGenerator;
 import com.luv2code.android.uvindex.viewmodel.LoginViewModel;
@@ -21,6 +22,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+
+import static com.luv2code.android.uvindex.utils.AppConstants.ADMIN;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         init();
 
+        Log.i(LOGGER, "\n\n--------------- ROLES IN DATABASE ---------------");
+        List<Role> roles = loginViewModel.getAllRoles();
+        for (Role role : roles) {
+            Log.i(LOGGER, role.toString());
+        }
+        Log.i(LOGGER, "----------------------------------------------------\n\n");
+
         Log.i(LOGGER, "\n\n--------------- USERS IN DATABASE ---------------");
         List<User> users = loginViewModel.getAllUsers();
         for (User user : users) {
@@ -72,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         User user = loginViewModel.findUser(username, password);
-        if (user != null) {
-            int roleNumber = loginViewModel.userRole(user);
-            if (roleNumber == 0) {
+        if (user.getUsername() != null) {
+            Role role = loginViewModel.findingUserRole(user);
+            if (role.getCodeName().equals(ADMIN)) {
                 // Admin intent
                 Toast.makeText(this, "Hello Admin", Toast.LENGTH_SHORT).show();
             } else {

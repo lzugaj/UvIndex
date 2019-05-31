@@ -6,8 +6,12 @@ package com.luv2code.android.uvindex.utils;
 
 public class AppConstants {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 7;
 
     public static final String DATABASE_NAME = "uvindex";
+
+    public static final String ADMIN = "Admin";
+
+    public static final String USER = "User";
 
 }

@@ -1,6 +1,7 @@
 package com.luv2code.android.uvindex.utils;
 
 import com.luv2code.android.uvindex.database.UvIndexDatabase;
+import com.luv2code.android.uvindex.entity.Role;
 import com.luv2code.android.uvindex.entity.User;
 
 /**
@@ -31,11 +32,17 @@ public class DataGenerator {
             return;
         }
 
-        User user1 = new User("lzugaj", "luka123", 1);
-        User user2 = new User("dbukvic", "dbukvic12", 1);
-        User user3 = new User("admin", "admin", 0);
+        Role adminRole = new Role(1L,"Admin role", "Admin");
+        Role userRole = new Role(2L,"User role", "User");
+
+        User user1 = new User("lzugaj", "luka123", userRole.getId());
+        User user2 = new User("dbukvic", "dbukvic12", userRole.getId());
+        User user3 = new User("admin", "admin", adminRole.getId());
 
         database.clearAllTables();
+
+        database.roleDao().insert(adminRole);
+        database.roleDao().insert(userRole);
 
         database.userDao().insert(user1);
         database.userDao().insert(user2);

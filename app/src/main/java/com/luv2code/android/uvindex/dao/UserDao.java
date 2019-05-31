@@ -20,6 +20,6 @@ public interface UserDao {
     List<User> findAll();
 
     @Insert
-    void insert(User users);
+    void insert(User user);
 
 }

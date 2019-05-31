@@ -34,6 +34,6 @@ public class UserRepository implements UserDao {
     @Override
     public final void insert(User users) {
         userDao.insert(users);
-        Log.i(LOGGER, "Inserting new users in database.");
+        Log.i(LOGGER, "Inserting new user in database.");
     }
 }

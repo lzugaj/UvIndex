@@ -36,4 +36,120 @@
         <item name="android:enabled">false</item>
     </style>
 
+    <!-- Spinner Style -->
+    <style name="LocationSpinnerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/etTextSize</item>
+        <item name="android:layout_marginBottom">@dimen/marginBottomUser</item>
+    </style>
+
+    <!-- Linear Layout for date picker buttons Style -->
+    <style name="LLButtonDatePickers">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/marginBottomUser</item>
+    </style>
+
+    <!-- Parent Button Style -->
+    <style name="BtnDatePickerStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!-- DateFrom Button Style -->
+    <style name="BtnDateFromStyle.BtnDatePickerStyle" parent="BtnDatePickerStyle">
+        <item name="android:text">@string/date_from</item>
+    </style>
+
+    <!-- DateTo Button Style -->
+    <style name="BtnDateToStyle.BtnDatePickerStyle" parent="BtnDatePickerStyle">
+        <item name="android:text">@string/date_to</item>
+    </style>
+
+    <!-- Search Button Style -->
+    <style name="BtnSearch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/button_search</item>
+        <item name="android:layout_marginBottom">@dimen/marginBottomUser</item>
+    </style>
+
+    <!-- RecyclerView Style -->
+    <style name="RecyclerViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- Linear Layout for Card View Style -->
+    <style name="LLCardViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">@dimen/paddingCardView</item>
+    </style>
+
+    <!-- Linear Layout for Card View Content Style -->
+    <style name="LLContentStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">5</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- TextView Location Style -->
+    <style name="TvLocationStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+    </style>
+
+    <!-- Linear Layout for UvIndexText Style -->
+    <style name="LLCardTextViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- Parent Button Style -->
+    <style name="TvStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!-- TextView UvIndex Text Style -->
+    <style name="TvUvIndexText.TvStyle" parent="TvStyle">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:text">@string/uvIndexText</item>
+    </style>
+
+    <!-- TextView UvIndex Value Style -->
+    <style name="TvUvIndexValue.TvStyle" parent="TvStyle">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <!-- TextView Date Text Style -->
+    <style name="TvDateText.TvStyle" parent="TvStyle">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:text">@string/dateText</item>
+    </style>
+
+    <!-- TextView Date Value Style -->
+    <style name="TvDateValue.TvStyle" parent="TvStyle">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <!-- ImageView Style -->
+    <style name="IvInfoStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/ivHeight</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:src">@drawable/info</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:contentDescription">@string/iv_info_description</item>
+    </style>
+
 </resources>

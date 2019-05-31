@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.UserActivity"
+    android:orientation="vertical"
+    android:padding="@dimen/padding">
+
+    <Spinner
+        android:id="@+id/locationSpinner"
+        style="@style/LocationSpinnerStyle"
+        android:entries="@array/locations" />
+
+    <LinearLayout style="@style/LLButtonDatePickers">
+        <Button android:id="@+id/btnDateFrom"
+            style="@style/BtnDateFromStyle.BtnDatePickerStyle"/>
+
+        <Button android:id="@+id/btnDateTo"
+            style="@style/BtnDateToStyle.BtnDatePickerStyle"/>
+    </LinearLayout>
+
+    <Button android:id="@+id/btnSearch"
+        style="@style/BtnSearch"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvUvIndexes"
+        style="@style/RecyclerViewStyle"/>
+
+</LinearLayout>

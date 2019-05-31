@@ -16,10 +16,10 @@ import java.util.List;
 @Dao
 public interface UserDao {
 
-    @Query("select * from user")
-    List<User> findAll();
-
     @Insert
     void insert(User user);
+
+    @Query("select * from user")
+    List<User> findAll();
 
 }

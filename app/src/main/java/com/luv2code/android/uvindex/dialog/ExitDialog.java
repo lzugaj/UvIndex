@@ -17,6 +17,7 @@ import java.util.Objects;
  */
 
 public class ExitDialog extends DialogFragment {
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

@@ -1,15 +1,26 @@
 package com.luv2code.android.uvindex.view;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.luv2code.android.uvindex.R;
+import com.luv2code.android.uvindex.adapter.UserUvIndexAdapter;
+import com.luv2code.android.uvindex.database.UvIndexDatabase;
 import com.luv2code.android.uvindex.dialog.ExitDialog;
+import com.luv2code.android.uvindex.entity.UvIndex;
+import com.luv2code.android.uvindex.utils.DataGenerator;
+import com.luv2code.android.uvindex.viewmodel.UserViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +37,17 @@ public class UserActivity extends AppCompatActivity {
     @BindView(R.id.btnDateTo)
     Button btnDateTo;
 
+    @BindView(R.id.rvUvIndexes)
+    RecyclerView rvUvIndexes;
+
+    private UvIndexDatabase database;
+
+    private List<UvIndex> uvIndexes;
+
+    private UserUvIndexAdapter adapter;
+
+    private UserViewModel userViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +56,9 @@ public class UserActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         userIntentContent();
+        init();
+        setAdapter();
+        setRecycler();
     }
 
     private void userIntentContent() {
@@ -43,6 +68,24 @@ public class UserActivity extends AppCompatActivity {
             username = aboutUsIntent.getStringExtra(KEY_USER);
             Toast.makeText(this, "Hello, " + username, Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void init() {
+        database = UvIndexDatabase.getDatabase(this);
+        DataGenerator.with(database).generateUvIndexes();
+        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+    }
+
+    private void setAdapter() {
+        uvIndexes = new ArrayList<>();
+        uvIndexes.addAll(userViewModel.getAllUvIndexes());
+        adapter = new UserUvIndexAdapter(uvIndexes, this.userViewModel);
+    }
+
+    private void setRecycler() {
+        rvUvIndexes.setHasFixedSize(true);
+        rvUvIndexes.setLayoutManager(new LinearLayoutManager(this));
+        rvUvIndexes.setAdapter(adapter);
     }
 
     @Override

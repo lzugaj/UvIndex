@@ -25,15 +25,15 @@ public class UserRepository implements UserDao {
     }
 
     @Override
+    public final void insert(User users) {
+        userDao.insert(users);
+        Log.i(LOGGER, "Inserting new user in database.");
+    }
+
+    @Override
     public List<User> findAll() {
         List<User> users = userDao.findAll();
         Log.i(LOGGER, "Finding all users in database.");
         return users;
-    }
-
-    @Override
-    public final void insert(User users) {
-        userDao.insert(users);
-        Log.i(LOGGER, "Inserting new user in database.");
     }
 }

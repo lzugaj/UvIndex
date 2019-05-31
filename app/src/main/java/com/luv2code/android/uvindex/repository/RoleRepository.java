@@ -25,6 +25,12 @@ public class RoleRepository implements RoleDao {
     }
 
     @Override
+    public void insert(Role role) {
+        roleDao.insert(role);
+        Log.i(LOGGER, "Inserting new role in database.");
+    }
+
+    @Override
     public List<Role> findAll() {
         List<Role> roles = roleDao.findAll();
         Log.i(LOGGER, "Finding all roles in database.");
@@ -36,11 +42,5 @@ public class RoleRepository implements RoleDao {
         Role role = roleDao.findRoleByUserId(userRoleId);
         Log.i(LOGGER, "Finding role with id: " + userRoleId);
         return role;
-    }
-
-    @Override
-    public void insert(Role role) {
-        roleDao.insert(role);
-        Log.i(LOGGER, "Inserting new role in database.");
     }
 }

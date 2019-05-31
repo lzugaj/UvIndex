@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.luv2code.android.uvindex.entity.Role;
 import com.luv2code.android.uvindex.entity.User;
-import com.luv2code.android.uvindex.exception.EntityNotFoundException;
 import com.luv2code.android.uvindex.repository.RoleRepository;
 import com.luv2code.android.uvindex.repository.UserRepository;
 

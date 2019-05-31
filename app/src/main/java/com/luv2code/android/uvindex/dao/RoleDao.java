@@ -15,13 +15,13 @@ import java.util.List;
 @Dao
 public interface RoleDao {
 
+    @Insert
+    void insert(Role role);
+
     @Query("select * from role")
     List<Role> findAll();
 
     @Query("select * from role where role_id = :userRoleId")
     Role findRoleByUserId(Long userRoleId);
-
-    @Insert
-    void insert(Role role);
 
 }

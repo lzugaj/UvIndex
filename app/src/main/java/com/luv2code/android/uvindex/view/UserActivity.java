@@ -79,7 +79,7 @@ public class UserActivity extends AppCompatActivity {
     private void setAdapter() {
         uvIndexes = new ArrayList<>();
         uvIndexes.addAll(userViewModel.getAllUvIndexes());
-        adapter = new UserUvIndexAdapter(uvIndexes, this.userViewModel);
+        adapter = new UserUvIndexAdapter(uvIndexes, this.userViewModel, this);
     }
 
     private void setRecycler() {
@@ -103,7 +103,7 @@ public class UserActivity extends AppCompatActivity {
             exitDialog.show(getSupportFragmentManager(), EXIT_DIALOG);
             return true;
         } else if (id == R.id.action_logout) {
-            String message = "Goodbye! :)";
+            String message = getString(R.string.goodbye_msg);
             Intent loginIntent = new Intent();
             loginIntent.putExtra(RETURN_LOGIN_KEY, message);
             setResult(RESULT_OK, loginIntent);

@@ -13,9 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.luv2code.android.uvindex.R;
-import com.luv2code.android.uvindex.entity.Location;
 import com.luv2code.android.uvindex.entity.UvIndex;
-import com.luv2code.android.uvindex.viewmodel.UserViewModel;
 
 import java.util.Objects;
 
@@ -29,36 +27,37 @@ import butterknife.ButterKnife;
 @SuppressLint("ValidFragment")
 public class UvIndexCardDialog extends DialogFragment {
 
-    @BindView(R.id.tvLocation)
-    TextView tvLocation;
+    @BindView(R.id.tvLocationInfo)
+    TextView tvLocationInfo;
 
-    @BindView(R.id.tvUvIndexValue)
-    TextView tvUvIndexValue;
+    @BindView(R.id.tvUvIndexInfo)
+    TextView tvUvIndexInfo;
 
-    @BindView(R.id.tvDateValue)
-    TextView tvDateValue;
+    @BindView(R.id.tvDateInfo)
+    TextView tvDateInfo;
 
     private UvIndex uvIndex;
 
-    private UserViewModel userViewModel;
+    private String locationName;
 
-    public UvIndexCardDialog(UvIndex clickedCard) {
+    public UvIndexCardDialog(UvIndex clickedCard, String locationName) {
         this.uvIndex = clickedCard;
+        this.locationName = locationName;
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Test");
+        builder.setTitle(getString(R.string.uvIndex_dialog_title) + locationName);
 
         LayoutInflater layoutInflater = Objects.requireNonNull(getActivity()).getLayoutInflater();
-        @SuppressLint("InflateParams") View view = layoutInflater.inflate(R.layout.uv_index_info, null);
+        @SuppressLint("InflateParams")
+        View view = layoutInflater.inflate(R.layout.uv_index_info, null);
         builder.setView(view);
 
         ButterKnife.bind(this, view);
-
-        getCardContent();
+        getCardContent(uvIndex);
 
         builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
@@ -70,10 +69,9 @@ public class UvIndexCardDialog extends DialogFragment {
         return builder.create();
     }
 
-    private void getCardContent() {
-        Location location = userViewModel.findLocation(this.uvIndex);
-        tvLocation.setText(location.getCityName());
-        tvUvIndexValue.setText(uvIndex.getUvIndex());
-        tvDateValue.setText(uvIndex.getMeasurementDate());
+    private void getCardContent(UvIndex uvIndex) {
+        tvLocationInfo.setText(locationName);
+        tvUvIndexInfo.setText(uvIndex.getUvIndex());
+        tvDateInfo.setText(uvIndex.getMeasurementDate());
     }
 }

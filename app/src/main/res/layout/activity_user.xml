@@ -21,7 +21,7 @@
     </LinearLayout>
 
     <Button android:id="@+id/btnSearch"
-        style="@style/BtnSearch"/>
+        style="@style/BtnSearchStyle"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvUvIndexes"

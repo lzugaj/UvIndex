@@ -5,8 +5,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
+    <!-- Main Activity -->
     <!-- Image View Style -->
-    <style name="IvStyle">
+    <style name="IvLoginStyle">
         <item name="android:layout_width">@dimen/ivSize</item>
         <item name="android:layout_height">@dimen/ivSize</item>
         <item name="android:src">@drawable/auth_logo</item>
@@ -16,7 +17,7 @@
     </style>
 
     <!-- Edit Text Style -->
-    <style name="EtStyle">
+    <style name="EtLoginStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/etTextSize</item>
@@ -24,7 +25,7 @@
     </style>
 
     <!-- Button Style -->
-    <style name="BtnStyle">
+    <style name="BtnLoginStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
@@ -36,6 +37,7 @@
         <item name="android:enabled">false</item>
     </style>
 
+    <!-- User Activity -->
     <!-- Spinner Style -->
     <style name="LocationSpinnerStyle">
         <item name="android:layout_width">match_parent</item>
@@ -70,7 +72,7 @@
     </style>
 
     <!-- Search Button Style -->
-    <style name="BtnSearch">
+    <style name="BtnSearchStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/button_search</item>
@@ -83,6 +85,7 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <!-- UvIndexCardDialog -->
     <!-- Linear Layout for Card View Style -->
     <style name="LLCardViewStyle">
         <item name="android:layout_width">match_parent</item>
@@ -150,6 +153,43 @@
         <item name="android:src">@drawable/info</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:contentDescription">@string/iv_info_description</item>
+    </style>
+
+    <!-- CardDialog Info -->
+    <!-- Linear Layout Card Info Style -->
+    <style name="LLCardViewCityInfo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- Text for all Card View Text -->
+    <style name="CardViewInfoText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <!-- Card View City Text -->
+    <style name="TvCityText.CardViewInfoText" parent="CardViewInfoText">
+        <item name="android:text">@string/cityText</item>
+    </style>
+
+    <!-- Card View UvIndex Text -->
+    <style name="TvUvIndexText.CardViewInfoText" parent="CardViewInfoText">
+        <item name="android:text">@string/uvIndexText</item>
+    </style>
+
+    <!-- Card View Date Text -->
+    <style name="TvDateText.CardViewInfoText" parent="CardViewInfoText">
+        <item name="android:text">@string/dateText</item>
+    </style>
+
+    <!-- Card View values - City, UvIndex and Date -->
+    <style name="CardViewInfoValues">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
     </style>
 
 </resources>

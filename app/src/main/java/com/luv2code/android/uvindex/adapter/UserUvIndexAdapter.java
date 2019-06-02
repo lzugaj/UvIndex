@@ -1,6 +1,8 @@
 package com.luv2code.android.uvindex.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.luv2code.android.uvindex.utils.AppConstants.UVINDEXCARD_DIALOG;
+
 /**
  * Created by lzugaj on 5/31/2019
  */
@@ -30,9 +34,12 @@ public class UserUvIndexAdapter extends RecyclerView.Adapter<UserUvIndexAdapter.
 
     private UserViewModel userViewModel;
 
-    public UserUvIndexAdapter(List<UvIndex> uvIndexes, UserViewModel userViewModel) {
+    private Context context;
+
+    public UserUvIndexAdapter(List<UvIndex> uvIndexes, UserViewModel userViewModel, Context context) {
         this.uvIndexes = uvIndexes;
         this.userViewModel = userViewModel;
+        this.context = context;
     }
 
     @NonNull
@@ -45,8 +52,7 @@ public class UserUvIndexAdapter extends RecyclerView.Adapter<UserUvIndexAdapter.
     @Override
     public void onBindViewHolder(@NonNull UserUvIndexAdapter.ViewHolder holder, int position) {
         final UvIndex uvIndex = uvIndexes.get(position);
-        Location location = userViewModel.findLocation(uvIndex);
-
+        final Location location = userViewModel.findLocation(uvIndex);
         final UvIndex clickedCard = userViewModel.findUvIndex(uvIndex);
 
         holder.tvLocation.setText(location.getCityName());
@@ -54,9 +60,10 @@ public class UserUvIndexAdapter extends RecyclerView.Adapter<UserUvIndexAdapter.
         holder.tvDateValue.setText(uvIndex.getMeasurementDate());
         holder.ivInfo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                UvIndexCardDialog dialog = new UvIndexCardDialog(clickedCard);
-                dialog.show((UserActivity) getSupportFragmentManager(), "UvIndexCardDialog");
+            public void onClick(View view) {
+                FragmentManager fragmentManager = ((UserActivity) context).getSupportFragmentManager();
+                UvIndexCardDialog dialog = new UvIndexCardDialog(clickedCard, location.getCityName());
+                dialog.show(fragmentManager, UVINDEXCARD_DIALOG);
                 dialog.setCancelable(false);
             }
         });
@@ -67,7 +74,7 @@ public class UserUvIndexAdapter extends RecyclerView.Adapter<UserUvIndexAdapter.
         return uvIndexes.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tvLocation)
         TextView tvLocation;
@@ -81,7 +88,7 @@ public class UserUvIndexAdapter extends RecyclerView.Adapter<UserUvIndexAdapter.
         @BindView(R.id.ivInfo)
         ImageView ivInfo;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

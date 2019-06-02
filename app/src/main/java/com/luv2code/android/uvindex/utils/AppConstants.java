@@ -22,5 +22,6 @@ public class AppConstants {
 
     // Exit dialog
     public static final String EXIT_DIALOG = "ExitDialog";
+    public static final String UVINDEXCARD_DIALOG = "UvIndexCardDialog";
 
 }

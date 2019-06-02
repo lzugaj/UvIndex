@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -19,6 +20,7 @@ import com.luv2code.android.uvindex.database.UvIndexDatabase;
 import com.luv2code.android.uvindex.dialog.DateFromDialog;
 import com.luv2code.android.uvindex.dialog.DateToDialog;
 import com.luv2code.android.uvindex.dialog.ExitDialog;
+import com.luv2code.android.uvindex.entity.Location;
 import com.luv2code.android.uvindex.entity.UvIndex;
 import com.luv2code.android.uvindex.utils.DataGenerator;
 import com.luv2code.android.uvindex.viewmodel.UserViewModel;
@@ -38,6 +40,8 @@ import static com.luv2code.android.uvindex.utils.AppConstants.KEY_USER;
 import static com.luv2code.android.uvindex.utils.AppConstants.RETURN_LOGIN_KEY;
 
 public class UserActivity extends AppCompatActivity {
+
+    private static final String LOGGER = UserActivity.class.getSimpleName();
 
     @BindView(R.id.locationSpinner)
     Spinner locationSpinner;
@@ -132,11 +136,6 @@ public class UserActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    @OnItemSelected(R.id.locationSpinner)
-//    public void locationSpinner(int position) {
-//        Toast.makeText(this, position, Toast.LENGTH_SHORT).show();
-//    }
-
     @OnClick(R.id.btnDateFrom)
     public void btnDateFrom() {
         DateFromDialog dateFromDialog = new DateFromDialog();
@@ -157,5 +156,30 @@ public class UserActivity extends AppCompatActivity {
 
     public void setBtnDateToText(String value) {
         btnDateTo.setText(value);
+    }
+
+    @OnClick(R.id.btnSearch)
+    public void btnSearch() {
+        List<UvIndex> list = new ArrayList<>();
+        String cityName = locationSpinner.getSelectedItem().toString();
+        Location location = userViewModel.findLocationByUvIndexId(cityName);
+        List<UvIndex> uvIndexList = userViewModel.getAllUvIndexes();
+        for (UvIndex uvIndex : uvIndexList) {
+            if (uvIndex.getLocationId().equals(location.getId())) {
+                list.add(uvIndex);
+            }
+        }
+
+        updateUvIndexList(list);
+    }
+
+    private void updateUvIndexList(List<UvIndex> list) {
+        List<UvIndex> uvIndexes = new ArrayList<>();
+        uvIndexes.addAll(list);
+        adapter = new UserUvIndexAdapter(uvIndexes, this.userViewModel, this);
+
+        rvUvIndexes.setHasFixedSize(true);
+        rvUvIndexes.setLayoutManager(new LinearLayoutManager(this));
+        rvUvIndexes.setAdapter(adapter);
     }
 }

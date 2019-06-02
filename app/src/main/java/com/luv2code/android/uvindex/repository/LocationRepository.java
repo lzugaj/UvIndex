@@ -50,4 +50,11 @@ public class LocationRepository implements LocationDao {
         Log.i(LOGGER, "Finding all distinct locations");
         return locations;
     }
+
+    @Override
+    public Location findLocationsByCityName(String cityName) {
+        Location location = locationDao.findLocationsByCityName(cityName);
+        Log.i(LOGGER, "Finding all locations with city name: " + cityName);
+        return location;
+    }
 }

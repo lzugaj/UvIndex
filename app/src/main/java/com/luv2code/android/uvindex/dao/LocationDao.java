@@ -27,4 +27,7 @@ public interface LocationDao {
     @Query("select distinct city_name from location")
     List<String> findAllDistinctLocations();
 
+    @Query("select * from location where city_name = :cityName")
+    Location findLocationsByCityName(String cityName);
+
 }

@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btnLogin)
     Button btnLogin;
 
-    private UvIndexDatabase database;
-
     private LoginViewModel loginViewModel;
 
     private final int reqCodeUserIntent = 57;
@@ -56,24 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         init();
-
-        Log.i(LOGGER, "\n\n--------------- ROLES IN DATABASE ---------------");
-        List<Role> roles = loginViewModel.getAllRoles();
-        for (Role role : roles) {
-            Log.i(LOGGER, role.toString());
-        }
-        Log.i(LOGGER, "----------------------------------------------------\n\n");
-
-        Log.i(LOGGER, "\n\n--------------- USERS IN DATABASE ---------------");
-        List<User> users = loginViewModel.getAllUsers();
-        for (User user : users) {
-            Log.i(LOGGER, user.toString());
-        }
-        Log.i(LOGGER, "----------------------------------------------------\n\n");
     }
 
     private void init() {
-        database = UvIndexDatabase.getDatabase(this);
+        UvIndexDatabase database = UvIndexDatabase.getDatabase(this);
         DataGenerator.with(database).generateUsers();
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
     }
@@ -123,5 +107,7 @@ public class MainActivity extends AppCompatActivity {
             String result = Objects.requireNonNull(data).getStringExtra(RETURN_LOGIN_KEY);
             Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
         }
+
+        init();
     }
 }

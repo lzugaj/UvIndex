@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -66,7 +67,7 @@ public class UserActivity extends AppCompatActivity {
 
         userIntentContent();
         init();
-//        setSpinner();
+        setSpinner();
         setAdapter();
         setRecycler();
     }
@@ -86,23 +87,12 @@ public class UserActivity extends AppCompatActivity {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
     }
 
-//    private void setSpinner() {
-//        final List<String> locations = userViewModel.getAllDistinctLocations();
-//        locationSpinner.setOnItemClickListener(new OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        ArrayAdapter<String> locationNames = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);
-//        locationNames.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        locationSpinner.setAdapter(locationNames);
-//    }
+    private void setSpinner() {
+        final List<String> locations = userViewModel.getAllDistinctLocations();
+        ArrayAdapter<String> locationNames = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);
+        locationNames.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        locationSpinner.setAdapter(locationNames);
+    }
 
     private void setAdapter() {
         List<UvIndex> uvIndexes = new ArrayList<>();
@@ -142,10 +132,10 @@ public class UserActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @OnItemSelected(R.id.locationSpinner)
-    public void locationSpinner(int position) {
-        Toast.makeText(this, position, Toast.LENGTH_SHORT).show();
-    }
+//    @OnItemSelected(R.id.locationSpinner)
+//    public void locationSpinner(int position) {
+//        Toast.makeText(this, position, Toast.LENGTH_SHORT).show();
+//    }
 
     @OnClick(R.id.btnDateFrom)
     public void btnDateFrom() {

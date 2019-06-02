@@ -9,11 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.luv2code.android.uvindex.R;
 import com.luv2code.android.uvindex.adapter.UserUvIndexAdapter;
 import com.luv2code.android.uvindex.database.UvIndexDatabase;
+import com.luv2code.android.uvindex.dialog.DateFromDialog;
+import com.luv2code.android.uvindex.dialog.DateToDialog;
 import com.luv2code.android.uvindex.dialog.ExitDialog;
 import com.luv2code.android.uvindex.entity.UvIndex;
 import com.luv2code.android.uvindex.utils.DataGenerator;
@@ -24,12 +27,19 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnItemSelected;
 
+import static com.luv2code.android.uvindex.utils.AppConstants.DATE_FROM_DIALOG;
+import static com.luv2code.android.uvindex.utils.AppConstants.DATE_TO_DIALOG;
 import static com.luv2code.android.uvindex.utils.AppConstants.EXIT_DIALOG;
 import static com.luv2code.android.uvindex.utils.AppConstants.KEY_USER;
 import static com.luv2code.android.uvindex.utils.AppConstants.RETURN_LOGIN_KEY;
 
 public class UserActivity extends AppCompatActivity {
+
+    @BindView(R.id.locationSpinner)
+    Spinner locationSpinner;
 
     @BindView(R.id.btnDateFrom)
     Button btnDateFrom;
@@ -37,12 +47,11 @@ public class UserActivity extends AppCompatActivity {
     @BindView(R.id.btnDateTo)
     Button btnDateTo;
 
+    @BindView(R.id.btnSearch)
+    Button btnSearch;
+
     @BindView(R.id.rvUvIndexes)
     RecyclerView rvUvIndexes;
-
-    private UvIndexDatabase database;
-
-    private List<UvIndex> uvIndexes;
 
     private UserUvIndexAdapter adapter;
 
@@ -57,6 +66,7 @@ public class UserActivity extends AppCompatActivity {
 
         userIntentContent();
         init();
+//        setSpinner();
         setAdapter();
         setRecycler();
     }
@@ -71,13 +81,31 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void init() {
-        database = UvIndexDatabase.getDatabase(this);
+        UvIndexDatabase database = UvIndexDatabase.getDatabase(this);
         DataGenerator.with(database).generateUvIndexes();
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
     }
 
+//    private void setSpinner() {
+//        final List<String> locations = userViewModel.getAllDistinctLocations();
+//        locationSpinner.setOnItemClickListener(new OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//        ArrayAdapter<String> locationNames = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);
+//        locationNames.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        locationSpinner.setAdapter(locationNames);
+//    }
+
     private void setAdapter() {
-        uvIndexes = new ArrayList<>();
+        List<UvIndex> uvIndexes = new ArrayList<>();
         uvIndexes.addAll(userViewModel.getAllUvIndexes());
         adapter = new UserUvIndexAdapter(uvIndexes, this.userViewModel, this);
     }
@@ -114,7 +142,30 @@ public class UserActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setBtnDateText(String value) {
+    @OnItemSelected(R.id.locationSpinner)
+    public void locationSpinner(int position) {
+        Toast.makeText(this, position, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.btnDateFrom)
+    public void btnDateFrom() {
+        DateFromDialog dateFromDialog = new DateFromDialog();
+        dateFromDialog.setCancelable(false);
+        dateFromDialog.show(getSupportFragmentManager(), DATE_FROM_DIALOG);
+    }
+
+    @OnClick(R.id.btnDateTo)
+    public void btnDateTo() {
+        DateToDialog dateToDialog = new DateToDialog();
+        dateToDialog.setCancelable(false);
+        dateToDialog.show(getSupportFragmentManager(), DATE_TO_DIALOG);
+    }
+
+    public void setBtnDateFromText(String value) {
         btnDateFrom.setText(value);
+    }
+
+    public void setBtnDateToText(String value) {
+        btnDateTo.setText(value);
     }
 }

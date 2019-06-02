@@ -43,4 +43,11 @@ public class LocationRepository implements LocationDao {
         Log.i(LOGGER, "Finding location with id: " + uvIndexLocationId);
         return location;
     }
+
+    @Override
+    public List<String> findAllDistinctLocations() {
+        List<String> locations = locationDao.findAllDistinctLocations();
+        Log.i(LOGGER, "Finding all distinct locations");
+        return locations;
+    }
 }

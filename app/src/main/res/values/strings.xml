@@ -14,7 +14,7 @@
     <string name="exit_confirm">Are you sure you want exit the application</string>
     <string name="logout">Logout</string>
     <string name="exit">Exit</string>
-    <string name="uvIndex_dialog_title">UvIndex -</string>
+    <string name="uvIndex_dialog_title">UvIndex - </string>
     <string name="goodbye_msg">Goodbye! :)</string>
     <string name="cityText">Grad: </string>
 </resources>

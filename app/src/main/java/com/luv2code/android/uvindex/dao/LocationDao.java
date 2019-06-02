@@ -24,4 +24,7 @@ public interface LocationDao {
     @Query("select * from location where location_id = :uvIndexLocationId")
     Location findLocationByUvIndexId(Long uvIndexLocationId);
 
+    @Query("select distinct city_name from location")
+    List<String> findAllDistinctLocations();
+
 }

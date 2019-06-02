@@ -9,8 +9,7 @@
 
     <Spinner
         android:id="@+id/locationSpinner"
-        style="@style/LocationSpinnerStyle"
-        android:entries="@array/locations" />
+        style="@style/LocationSpinnerStyle" />
 
     <LinearLayout style="@style/LLButtonDatePickers">
         <Button android:id="@+id/btnDateFrom"

@@ -3,6 +3,7 @@ package com.luv2code.android.uvindex.viewmodel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.util.Log;
+import android.widget.AdapterView;
 
 import com.luv2code.android.uvindex.entity.Location;
 import com.luv2code.android.uvindex.entity.UvIndex;
@@ -51,6 +52,12 @@ public class UserViewModel extends AndroidViewModel {
         UvIndex searchedUvIndex = uvIndexRepository.findUvIndex(uvIndex.getId());
         Log.i(LOGGER, "Successfully found uvindex with id: " + uvIndex.getUvIndex());
         return searchedUvIndex;
+    }
+
+    public List<String> getAllDistinctLocations() {
+        List<String> locations = locationRepository.findAllDistinctLocations();
+        Log.i(LOGGER, "Successfully found all distinct locations in database.");
+        return locations;
     }
 
 }

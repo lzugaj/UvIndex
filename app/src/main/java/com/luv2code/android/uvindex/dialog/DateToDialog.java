@@ -15,17 +15,17 @@ import java.util.Objects;
 import java.util.TimeZone;
 
 /**
- * Created by lzugaj on 5/31/2019
+ * Created by lzugaj on 6/2/2019
  */
 
-public class DateDialog extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+public class DateToDialog extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         String date = dayOfMonth + "." + (monthOfYear + 1) + "." + year;
         UserActivity activity = (UserActivity) getActivity();
         assert activity != null;
-        activity.setBtnDateText(date);
+        activity.setBtnDateToText(date);
     }
 
     @NonNull

@@ -22,10 +22,26 @@ public class DateFromDialog extends DialogFragment implements DatePickerDialog.O
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        String date = dayOfMonth + "." + (monthOfYear + 1) + "." + year;
+        String date = getDateFormat(dayOfMonth) + "." + getMonthFormat(monthOfYear + 1) + "." + year;
         UserActivity activity = (UserActivity) getActivity();
         assert activity != null;
         activity.setBtnDateFromText(date);
+    }
+
+    private String getDateFormat(int dayOfMonth) {
+        if (dayOfMonth < 10) {
+            return "0" + dayOfMonth;
+        } else {
+            return String.valueOf(dayOfMonth);
+        }
+    }
+
+    private String getMonthFormat(int month) {
+        if (month < 10) {
+            return "0" + month;
+        } else {
+            return String.valueOf(month);
+        }
     }
 
     @NonNull

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,7 +17,6 @@ import com.luv2code.android.uvindex.entity.User;
 import com.luv2code.android.uvindex.utils.DataGenerator;
 import com.luv2code.android.uvindex.viewmodel.LoginViewModel;
 
-import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
